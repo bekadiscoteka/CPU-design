@@ -1,0 +1,27 @@
+ORIGIN 0x8000
+
+	JSR get_char
+	JSR print
+	END
+
+get_char:
+	DATA #0, IND
+	POP R0
+	loop:	
+		LOAD keyboard, R1
+		CMP #0, R1, R2
+		JE R0
+		INC IND
+		PUSH R1
+		JMP loop
+print:
+	POP R0
+	innerloop:
+		POP R1
+		STORE R1, display
+		DEC IND
+		CMP #0, IND, R2
+		JE R0
+		JMP innerloop
+EQU1: keyboard 0xfff0
+EQU2: display 0xfff3	

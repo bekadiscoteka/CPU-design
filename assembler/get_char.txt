@@ -1,0 +1,6 @@
+ORIGIN 0x8000
+	LOAD keyboard, R0
+	STORE R0, display
+	END
+EQU1: keyboard 0xfff0
+EQU2: display 0xfff3	
